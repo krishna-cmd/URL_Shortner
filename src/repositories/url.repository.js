@@ -31,9 +31,17 @@ async function findByShortCode(code) {
   return result.rows[0];
 }
 
+async function incrementClicks(shortCode) {
+  await pool.query(
+    "UPDATE urls SET click_count = click_count + 1 WHERE short_code = $1",
+    [shortCode],
+  );
+}
+
 module.exports = {
   findByLongUrl,
   createUrl,
   findByShortCode,
   updateShortCode,
+  incrementClicks,
 };

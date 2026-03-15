@@ -22,11 +22,10 @@ async function redirect(req, res) {
       return res.status(404).send("URL not found");
     }
 
-    console.log("shortCode:", shortCode, typeof shortCode);
-    console.log("url.long_url:", url.long_url, typeof url.long_url);
-
     // 3️⃣ Store in Redis
     await redisClient.set(shortCode, url.long_url);
+
+    await repo.incrementClicks(shortCode);
 
     res.redirect(url.long_url);
   } catch (err) {
