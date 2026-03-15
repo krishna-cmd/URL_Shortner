@@ -1,11 +1,10 @@
 const express = require("express");
+const urlRoutes = require("./routes/url.route");
 
 const app = express();
 
 app.use(express.json());
 
-app.get("/health", (req, res) => {
-  res.send("Server running");
-});
+app.use("/", urlRoutes);
 
 module.exports = app;
