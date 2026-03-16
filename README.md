@@ -120,8 +120,10 @@ Services started:
 
 npm install
 
-2. Start server
+2. # start redis
+docker run -d -p 6379:6379 --name redis-server redis
 
+# start application
 node src/server.js
 
 ---
